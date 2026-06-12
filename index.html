@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REVN Motors — Sell Your Bike. Get Instant Payment.</title>
+  <meta name="description"
+    content="Sell your used bike in Chennai instantly. Get the best market price, free doorstep inspection, RC transfer support and same-day payment. Revn Motors buys all bikes." />
+  <meta name="keywords"
+    content="sell bike Chennai, used bike valuation, sell second hand bike, bike resale, instant bike payment" />
+  <meta property="og:title" content="REVN Motors — Best Price for Your Bike" />
+  <meta property="og:description"
+    content="Sell your bike instantly. Free inspection, instant payment, RC transfer handled." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#080808" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23080808'/><text y='22' x='4' font-size='18' font-weight='900' fill='%23FF6600' font-family='sans-serif'>R</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;900&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" />
+</head>
+
+<body>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress"></div>
+
+  <!-- CURSOR -->
+  <div id="cur-dot"></div>
+
+  <!-- CARBON OVERLAY -->
+  <div class="carbon-overlay"></div>
+  <canvas id="ptx"></canvas>
+
+  <!-- NAV OVERLAY -->
+  <div id="navOverlay"
+    style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;backdrop-filter:blur(4px)"></div>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     LOADER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <div id="loader">
+    <div class="ld-logo"><span>REVN</span> MOTORS</div>
+    <div class="ld-tag">Starting Engine...</div>
+    <div class="ld-rpm-wrap">
+      <div class="ld-tach" aria-hidden="true">
+        <svg viewBox="0 0 260 160" class="ld-tach-svg" focusable="false">
+          <path class="ld-tach-bg" d="M 42 118 A 88 88 0 0 1 218 118" />
+          <path class="ld-tach-red" d="M 174 52 A 88 88 0 0 1 218 118" />
+          <g class="ld-tick" transform="rotate(-90 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">0</text>
+          </g>
+          <g class="ld-tick" transform="rotate(-60 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">2</text>
+          </g>
+          <g class="ld-tick" transform="rotate(-30 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">4</text>
+          </g>
+          <g class="ld-tick" transform="rotate(0 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">6</text>
+          </g>
+          <g class="ld-tick" transform="rotate(30 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">8</text>
+          </g>
+          <g class="ld-tick ld-tick-red" transform="rotate(60 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label ld-tick-red" x="130" y="28"
+              text-anchor="middle">10</text>
+          </g>
+          <g class="ld-tick ld-tick-red" transform="rotate(90 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label ld-tick-red" x="130" y="28"
+              text-anchor="middle">12</text>
+          </g>
+          <text class="ld-tach-unit" x="130" y="152" text-anchor="middle">x1000 RPM</text>
+          <g id="rpmNeedle" class="ld-needle">
+            <line x1="130" y1="118" x2="130" y2="42" />
+            <circle cx="130" cy="118" r="7" />
+          </g>
+        </svg>
+      </div>
+      <div class="ld-val"><span id="rpmVal">0</span> <span>RPM</span></div>
+    </div>
+    <div class="ld-bars">
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+    </div>
+  </div>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     NAVBAR
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo"><span>REVN</span> MOTORS<sub>Â®</sub></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="nav-sell-drop">
+        <a href="sell.html" class="nav-sell-trigger">Sell <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="3">
+            <polyline points="6 9 12 15 18 9" />
+          </svg></a>
+        <ul class="sell-dropdown">
+          <li><a href="sell.html"> Sell Bike</a></li>
+          <li><a href="sell.html?tab=car"> Sell Car</a></li>
+        </ul>
+      </li>
+      <li><a href="#faq">FAQ's</a></li>
+      <li><a href="sell.html" class="nav-cta">GET FREE VALUATION</a></li>
+    </ul>
+    <button class="hamburger" id="ham" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <nav class="mob-nav" id="mobNav">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="#contact">Contact</a>
+    <a href="sell.html">Sell Bike</a>
+    <a href="sell.html?tab=car">Sell Car</a>
+    <a href="#faq">FAQ's</a>
+    <a href="sell.html" class="nav-cta btn-p">GET FREE VALUATION</a>
+  </nav>
+
+  <!-- â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• 
+     HERO (UPGRADED)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <section id="hero" class="hero-section">
+    <!-- Full-screen video background -->
+    <div class="hero-video-container">
+      <video id="heroVideo" autoplay muted loop playsinline preload="metadata">
+        <source src="assets/videos/hero-video.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
+    </div>
+
+    <!-- Animated orange glow effects -->
+    <div class="hero-glow-orb hero-glow-orb-1"></div>
+    <div class="hero-glow-orb hero-glow-orb-2"></div>
+
+    <!-- Hero Content Wrap - Full Width Centered -->
+    <div class="hero-con hero-con-center parallax-element" data-speed="0.12">
+      <div class="hero-center">
+        <h1 class="hero-title">GET THE BEST VALUE <span class="hl">FOR YOUR VEHICLE</span></h1>
+        <p class="hero-sub">Instant online valuation. Free doorstep inspection.<br>Same-day payment. RC transfer handled
+          — Bikes &amp; Cars.</p>
+        <div class="hero-perks">
+          <div class="hp"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>Instant Valuation</div>
+          <div class="hp"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>Free Inspection</div>
+          <div class="hp"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>Same-Day Payment</div>
+          <div class="hp"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>Free RC Transfer</div>
+        </div>
+        <div class="hero-btns">
+          <a href="sell.html" class="btn-p">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 8 16 12 12 16" />
+              <line x1="8" y1="12" x2="16" y2="12" />
+            </svg>
+            SELL YOUR BIKE
+          </a>
+          <a href="sell.html?tab=car" class="btn-s">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+            SELL YOUR CAR
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND MARQUEE -->
+  <div class="marq-wrap" id="brands" aria-label="Supported motorcycle brands">
+    <div class="marq-inner">
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M2,13 C3,13 5,11.5 6,10 C7,8.5 9.5,7 11.5,7 C13,7 13.5,8 14.5,7 C15.5,6 16.5,5 18,5 C19.5,5 21,7.5 21.5,9.5 C22,11.5 21.5,12.5 20,12.5 C18.5,12.5 17,11.5 16,11 L14,12.5 L16.5,15.5 C17,16 16.5,16.5 15.5,16 C14.5,15.5 12,13.5 12,13.5 L8.5,16.5 L7.5,16 C8.5,14.5 9.5,13.5 9.5,13.5 L5.5,15 C4.5,15.5 3.5,15.5 2,14.5 Z" /></svg>TVS</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M6,4 L11,4 C14.5,4 16.5,5.5 16.5,8 C16.5,9.5 15.5,10.8 14,11.5 C16,12.2 17.5,13.8 17.5,16.5 C17.5,19.5 15,20.5 11,20.5 L6,20.5 Z M9.5,7 L9.5,10.5 L11,10.5 C12.5,10.5 13.5,10 13.5,8.8 C13.5,7.6 12.5,7 11,7 Z M9.5,13.5 L9.5,17.5 L11.5,17.5 C13.5,17.5 14.5,16.8 14.5,15.5 C14.5,14.2 13.5,13.5 11.5,13.5 Z" /></svg>Bajaj</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M8,3 L16,3 C17.5,3 18,3.5 17,5.5 L12.5,12.5 C12.2,13 12.5,13.5 13.5,13.5 L18,13.5 L10,21 L8,21 C6.5,21 6,20.5 7,18.5 L11.5,11.5 C11.8,11 11.5,10.5 10.5,10.5 L6,10.5 Z" /></svg>Suzuki</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 32 24"><path d="M3,5 L5.5,5 L5.5,10.5 L8.5,5 L11.5,5 L7.8,11.2 L11.8,19 L8.8,19 L5.5,12.5 L5.5,19 L3,19 Z M12,5 L19.5,5 L19.5,7.5 L17,7.5 L17,19 L14.5,19 L14.5,7.5 L12,7.5 Z M20,5 L23,5 L25,14 L27,5 L30,5 L30,19 L27.5,19 L27.5,9.5 L25.5,16 L24.5,16 L22.5,9.5 L22.5,19 L20,19 Z" /></svg>KTM</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M4,4 L9,4 L12,9 L15,4 L20,4 L20,20 L15,20 L15,13 L9,13 L9,20 L4,20 Z" /></svg>Hero</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M6,3 L9,3 L9,10 L16,3 L20,3 L12.5,11 L20,21 L16,21 L10,13 L9,14.5 L9,21 L6,21 Z" /></svg>Kawasaki</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="7.5" fill="none" stroke="currentColor" stroke-width="0.8"/><path d="M12,4.5 A7.5,7.5 0 0,1 19.5,12 L12,12 Z" fill="currentColor"/><path d="M12,19.5 A7.5,7.5 0 0,1 4.5,12 L12,12 Z" fill="currentColor"/></svg>BMW Motorrad</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M12,2 L19,5.5 L19,10 C19,15.5 15.5,19 12,21.5 C8.5,19 5,15.5 5,10 L5,5.5 Z" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="2" y="9.5" width="20" height="4.5" rx="1" fill="currentColor" stroke="var(--bg)" stroke-width="1"/></svg>Harley Davidson</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M12,2 C15,2 20,4.5 20,10.5 C20,16.5 15,20.5 12,22 C9,20.5 4,16.5 4,10.5 C4,4.5 9,2 12,2 Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6,13 C10,9 14,9 18,13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Ducati</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M4,18 L20,18 L20,20 L4,20 Z M4,16 L5.5,9 L9.5,13 L12,6 L14.5,13 L18.5,9 L20,16 Z" /><circle cx="5.5" cy="8" r="1" fill="currentColor"/><circle cx="12" cy="5" r="1" fill="currentColor"/><circle cx="18.5" cy="8" r="1" fill="currentColor"/></svg>Royal Enfield</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M2,18 C2,18 8,17 12,14 C15,11.8 19,8 21,5 C21.5,4.2 21.2,3.8 20.2,4.2 C18,5.2 13,7.5 10,9.5 C7.5,11.2 4,14 2.5,15.5 C2.1,15.9 2,16.5 2,18 Z M4,13.5 C7,11.5 12,8.5 17.5,6 C18,5.8 17.5,5.5 16.5,5.8 C12,7.2 7,10 4,12 Z" /></svg>Honda</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12,4 L12,9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M18.9,16 L14.2,13.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M5.1,16 L9.8,13.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9.5,4 L14.5,4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M17.6,18.2 L20.1,13.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M6.4,18.2 L3.9,13.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Yamaha</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M2,13 C3,13 5,11.5 6,10 C7,8.5 9.5,7 11.5,7 C13,7 13.5,8 14.5,7 C15.5,6 16.5,5 18,5 C19.5,5 21,7.5 21.5,9.5 C22,11.5 21.5,12.5 20,12.5 C18.5,12.5 17,11.5 16,11 L14,12.5 L16.5,15.5 C17,16 16.5,16.5 15.5,16 C14.5,15.5 12,13.5 12,13.5 L8.5,16.5 L7.5,16 C8.5,14.5 9.5,13.5 9.5,13.5 L5.5,15 C4.5,15.5 3.5,15.5 2,14.5 Z" /></svg>TVS</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M6,4 L11,4 C14.5,4 16.5,5.5 16.5,8 C16.5,9.5 15.5,10.8 14,11.5 C16,12.2 17.5,13.8 17.5,16.5 C17.5,19.5 15,20.5 11,20.5 L6,20.5 Z M9.5,7 L9.5,10.5 L11,10.5 C12.5,10.5 13.5,10 13.5,8.8 C13.5,7.6 12.5,7 11,7 Z M9.5,13.5 L9.5,17.5 L11.5,17.5 C13.5,17.5 14.5,16.8 14.5,15.5 C14.5,14.2 13.5,13.5 11.5,13.5 Z" /></svg>Bajaj</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M8,3 L16,3 C17.5,3 18,3.5 17,5.5 L12.5,12.5 C12.2,13 12.5,13.5 13.5,13.5 L18,13.5 L10,21 L8,21 C6.5,21 6,20.5 7,18.5 L11.5,11.5 C11.8,11 11.5,10.5 10.5,10.5 L6,10.5 Z" /></svg>Suzuki</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 32 24"><path d="M3,5 L5.5,5 L5.5,10.5 L8.5,5 L11.5,5 L7.8,11.2 L11.8,19 L8.8,19 L5.5,12.5 L5.5,19 L3,19 Z M12,5 L19.5,5 L19.5,7.5 L17,7.5 L17,19 L14.5,19 L14.5,7.5 L12,7.5 Z M20,5 L23,5 L25,14 L27,5 L30,5 L30,19 L27.5,19 L27.5,9.5 L25.5,16 L24.5,16 L22.5,9.5 L22.5,19 L20,19 Z" /></svg>KTM</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M4,4 L9,4 L12,9 L15,4 L20,4 L20,20 L15,20 L15,13 L9,13 L9,20 L4,20 Z" /></svg>Hero</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M6,3 L9,3 L9,10 L16,3 L20,3 L12.5,11 L20,21 L16,21 L10,13 L9,14.5 L9,21 L6,21 Z" /></svg>Kawasaki</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="7.5" fill="none" stroke="currentColor" stroke-width="0.8"/><path d="M12,4.5 A7.5,7.5 0 0,1 19.5,12 L12,12 Z" fill="currentColor"/><path d="M12,19.5 A7.5,7.5 0 0,1 4.5,12 L12,12 Z" fill="currentColor"/></svg>BMW Motorrad</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M12,2 L19,5.5 L19,10 C19,15.5 15.5,19 12,21.5 C8.5,19 5,15.5 5,10 L5,5.5 Z" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="2" y="9.5" width="20" height="4.5" rx="1" fill="currentColor" stroke="var(--bg)" stroke-width="1"/></svg>Harley Davidson</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M12,2 C15,2 20,4.5 20,10.5 C20,16.5 15,20.5 12,22 C9,20.5 4,16.5 4,10.5 C4,4.5 9,2 12,2 Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6,13 C10,9 14,9 18,13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Ducati</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M4,18 L20,18 L20,20 L4,20 Z M4,16 L5.5,9 L9.5,13 L12,6 L14.5,13 L18.5,9 L20,16 Z" /><circle cx="5.5" cy="8" r="1" fill="currentColor"/><circle cx="12" cy="5" r="1" fill="currentColor"/><circle cx="18.5" cy="8" r="1" fill="currentColor"/></svg>Royal Enfield</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><path d="M2,18 C2,18 8,17 12,14 C15,11.8 19,8 21,5 C21.5,4.2 21.2,3.8 20.2,4.2 C18,5.2 13,7.5 10,9.5 C7.5,11.2 4,14 2.5,15.5 C2.1,15.9 2,16.5 2,18 Z M4,13.5 C7,11.5 12,8.5 17.5,6 C18,5.8 17.5,5.5 16.5,5.8 C12,7.2 7,10 4,12 Z" /></svg>Honda</span>
+      <span class="marq-item"><svg class="brand-logo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12,4 L12,9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M18.9,16 L14.2,13.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M5.1,16 L9.8,13.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9.5,4 L14.5,4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M17.6,18.2 L20.1,13.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M6.4,18.2 L3.9,13.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Yamaha</span>
+    </div>
+  </div>
+
+  <section id="why" class="sp">
+    <div class="con">
+      <div class="tc fadeUp">
+        <div class="eyebrow">WHY SELL TO REVN MOTORS</div>
+        <h2 class="sec-title">THE BEST WAY TO <span class="hl">SELL YOUR BIKE</span></h2>
+        <div class="redline c"></div>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card feat-pop-left">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+          </div>
+          <h3>Best Market Price</h3>
+          <p>We offer industry-best valuations based on real-time market data, ensuring you never leave money on the
+            table.</p>
+        </div>
+        <div class="feat-card feat-pop-up">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+          </div>
+          <h3>Instant Payment</h3>
+          <p>Get paid via bank transfer within 2 hours of finalizing the deal. No waiting, no delays — instant cash in
+            hand.</p>
+        </div>
+        <div class="feat-card feat-pop-right">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <h3>Free Inspection</h3>
+          <p>Our certified experts come to your doorstep for a thorough inspection. Completely free, zero commitment
+            required.</p>
+        </div>
+        <div class="feat-card feat-pop-left">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
+          </div>
+          <h3>RC Transfer Support</h3>
+          <p>We handle all RTO paperwork and RC transfer formalities completely — so you're free from any legal hassles.
+          </p>
+        </div>
+        <div class="feat-card feat-pop-up">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+          </div>
+          <h3>Doorstep Pickup</h3>
+          <p>We come to your location at a time that suits you. No need to travel — we make selling your bike
+            effortless.</p>
+        </div>
+        <div class="feat-card feat-pop-right">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3>Hassle-Free Process</h3>
+          <p>From valuation to payment — everything is simple, transparent and handled by our expert team in under 24
+            hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="sp">
+    <div class="con">
+      <div class="tc fadeUp">
+        <div class="eyebrow">OUR PROCESS</div>
+        <h2 class="sec-title">HOW IT <span class="hl">WORKS</span></h2>
+        <p class="sec-sub tc" style="margin:0 auto .5rem;">Selling your bike is simple with REVN Motors. Our streamlined
+          4-step process ensures you get the best price with zero hassle.</p>
+        <div class="redline c"></div>
+      </div>
+      <div class="steps">
+        <div class="steps-line" aria-hidden="true">
+          <div class="steps-line-track"></div>
+          <span class="steps-particle"></span>
+          <span class="steps-particle"></span>
+          <span class="steps-particle"></span>
+        </div>
+        <div class="step slideRight">
+          <div class="step-circ">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+          </div>
+          <div class="step-title">Submit Details</div>
+          <p class="step-desc">Fill in your bike's brand, model, year and kilometres. Takes less than 2 minutes.</p>
+        </div>
+        <div class="step slideRight">
+          <div class="step-circ">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </div>
+          <div class="step-title">Bike Inspection</div>
+          <p class="step-desc">Our certified expert visits your location for a thorough, free inspection within 2–3
+            hours.</p>
+        </div>
+        <div class="step slideRight">
+          <div class="step-circ">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </div>
+          <div class="step-title">Receive Offer</div>
+          <p class="step-desc">Get the best offer for your bike on the spot. Accept, negotiate — your call, zero
+            pressure.</p>
+        </div>
+        <div class="step slideRight">
+          <div class="step-circ">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="5" width="20" height="14" rx="2" />
+              <line x1="2" y1="10" x2="22" y2="10" />
+            </svg>
+          </div>
+          <div class="step-title">Instant Payment</div>
+          <p class="step-desc">Accept the offer and receive instant bank transfer. Money in your account same day,
+            guaranteed.</p>
+        </div>
+      </div>
+
+      <div class="services-note fadeUp">
+        <p>We also buy cars, handle financed vehicles, manage RC transfers at no extra cost, and offer doorstep pickup
+          across 20+ cities. Every service is designed to save you time and get you the best price.</p>
+        <a href="sell.html" class="btn-p">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 8 16 12 12 16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+          START FREE VALUATION
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     FAQ
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <section id="faq" class="sp">
+    <div class="con">
+      <div class="tc fadeUp">
+        <div class="eyebrow">FAQ'S</div>
+        <h2 class="sec-title">FREQUENTLY ASKED <span class="hl">QUESTIONS</span></h2>
+        <p class="sec-sub">Got questions? We've got clear answers to help you sell with confidence.</p>
+        <div class="redline c"></div>
+      </div>
+      <div class="faq-cols" style="margin-top:2.5rem">
+        <div class="faq-item faq-pop-up">
+          <button class="faq-q">How is my bike valuation done? <span class="faq-ico">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-in">Our valuation is based on real-time market data, your bike's brand, model, year,
+              kilometres driven and overall condition. Our experts use industry-standard tools to give you the most
+              accurate and competitive price in the market.</div>
+          </div>
+        </div>
+        <div class="faq-item faq-pop-up">
+          <button class="faq-q">Can I sell a financed bike? <span class="faq-ico">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-in">Yes, you can sell a financed bike with us. We have experience handling foreclosure
+              procedures and will guide you through the complete process. The loan amount will be deducted from the
+              final payment made to you.</div>
+          </div>
+        </div>
+        <div class="faq-item faq-pop-up">
+          <button class="faq-q">How soon will I receive payment? <span class="faq-ico">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-in">Once the inspection is done and you accept our offer, payment is transferred to your
+              bank account immediately — typically within 30 minutes to 2 hours. We guarantee same-day payment, no
+              exceptions.</div>
+          </div>
+        </div>
+        <div class="faq-item faq-pop-up">
+          <button class="faq-q">What documents do I need? <span class="faq-ico">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-in">You'll need the bike's RC (Registration Certificate), a valid government-issued ID
+              proof (Aadhaar/PAN), insurance documents and if financed, an NOC from the finance company. We handle all
+              RC transfer paperwork on your behalf.</div>
+          </div>
+        </div>
+        <div class="faq-item faq-pop-up">
+          <button class="faq-q">Is the bike inspection really free? <span class="faq-ico">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-in">Absolutely. Our doorstep inspection is 100% free with zero obligation. If you don't
+              like our offer, you are free to walk away — no questions asked, no fees charged.</div>
+          </div>
+        </div>
+        <div class="faq-item faq-pop-up">
+          <button class="faq-q">Do you buy modified bikes? <span class="faq-ico">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-in">We evaluate bikes on a case-by-case basis. Bikes with minor modifications are
+              generally accepted. However, bikes with non-standard engine modifications or illegal modifications may be
+              declined or valued lower.</div>
+          </div>
+        </div>
+        <div class="faq-item faq-pop-up">
+          <button class="faq-q">Do you handle RC transfer? <span class="faq-ico">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-in">Yes, RC transfer is completely managed by us at zero extra cost to you. We work
+              directly with the RTO to ensure the transfer is done smoothly and you receive confirmation once completed.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item faq-pop-up">
+          <button class="faq-q">Which cities do you operate in? <span class="faq-ico">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-in">We currently operate in 20+ cities including Chennai, Coimbatore, Madurai, Trichy,
+              Salem, Vellore, Tirunelveli, Erode, Tiruppur, Thanjavur and more. Contact us to check availability in your
+              area.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     CONTACT SECTION
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <section id="contact" class="sp" style="background:#0a0a0a">
+    <div class="con">
+      <div class="tc fadeUp">
+        <div class="eyebrow">GET IN TOUCH</div>
+        <h2 class="sec-title">CONTACT <span class="hl">US</span></h2>
+        <p class="sec-sub">Have questions? Our expert team is ready to help you get the best value for your bike.</p>
+        <div class="redline c"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem" class="fadeUp">
+        <!-- Contact Info -->
+        <div>
+          <div
+            style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:2rem;margin-bottom:1.5rem">
+            <h3
+              style="font-family:var(--font-d);font-size:1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem;color:var(--accent)">
+              REACH US DIRECTLY</h3>
+            <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.73 4.19 2 2 0 0 1 4.71 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 18z" />
+              </svg>+91 98765 43210</div>
+            <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>info@revnmotors.in</div>
+            <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>123, Race Track Road, Guindy Industrial Estate, Chennai, Tamil Nadu — 600032</div>
+            <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>Mon–Sat: 9:00 AM – 7:00 PM</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:2rem;">
+            <h3
+              style="font-family:var(--font-d);font-size:1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem;color:var(--accent)">
+              2-DAY SALE GUARANTEE</h3>
+            <p style="color:var(--text2);font-size:.9rem;line-height:1.75">Unlike selling yourself (which can take 20+
+              days), REVN Motors completes the entire deal in under 48 hours — from your first form submission to money
+              in your bank account.</p>
+            <div style="display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap">
+              <div
+                style="background:rgba(255,102,0,.08);border:1px solid rgba(255,102,0,.2);border-radius:8px;padding:.6rem 1rem;text-align:center;flex:1;min-width:100px">
+                <div style="font-family:var(--font-d);font-size:1.5rem;font-weight:900;color:var(--accent)">2</div>
+                <div style="font-size:.72rem;color:var(--text2);font-family:var(--font-m);letter-spacing:.1em">DAYS
+                </div>
+              </div>
+              <div
+                style="background:rgba(255,102,0,.08);border:1px solid rgba(255,102,0,.2);border-radius:8px;padding:.6rem 1rem;text-align:center;flex:1;min-width:100px">
+                <div style="font-family:var(--font-d);font-size:1.5rem;font-weight:900;color:var(--accent)">vs</div>
+                <div style="font-size:.72rem;color:var(--text2);font-family:var(--font-m);letter-spacing:.1em">OTHERS
+                </div>
+              </div>
+              <div
+                style="background:rgba(255,102,0,.08);border:1px solid rgba(255,102,0,.2);border-radius:8px;padding:.6rem 1rem;text-align:center;flex:1;min-width:100px">
+                <div style="font-family:var(--font-d);font-size:1.5rem;font-weight:900;color:var(--text3)">20+</div>
+                <div style="font-size:.72rem;color:var(--text2);font-family:var(--font-m);letter-spacing:.1em">DAYS
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Contact Form -->
+        <div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:2rem">
+          <h3
+            style="font-family:var(--font-d);font-size:1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem">
+            SEND US A MESSAGE</h3>
+          <form id="contactForm" style="display:flex;flex-direction:column;gap:.75rem" onsubmit="handleContact(event)">
+            <input type="text" placeholder="Your Full Name"
+              style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:.75rem 1rem;color:#fff;font-family:var(--font-b);font-size:.95rem;outline:none;transition:border-color .3s"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'"
+              required />
+            <input type="tel" placeholder="Mobile Number"
+              style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:.75rem 1rem;color:#fff;font-family:var(--font-b);font-size:.95rem;outline:none;transition:border-color .3s"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'"
+              required />
+            <input type="email" placeholder="Email Address (optional)"
+              style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:.75rem 1rem;color:#fff;font-family:var(--font-b);font-size:.95rem;outline:none;transition:border-color .3s"
+              onfocus="this.style.borderColor='var(--accent)'"
+              onblur="this.style.borderColor='rgba(255,255,255,.08)'" />
+            <textarea placeholder="Your Message" rows="4"
+              style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:.75rem 1rem;color:#fff;font-family:var(--font-b);font-size:.95rem;outline:none;transition:border-color .3s;resize:vertical"
+              onfocus="this.style.borderColor='var(--accent)'"
+              onblur="this.style.borderColor='rgba(255,255,255,.08)'"></textarea>
+            <button type="submit" class="btn-p" style="justify-content:center">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              SEND MESSAGE
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     FINAL CTA
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <section id="cta" class="sp cta-section">
+    <div class="cta-bg-container">
+      <img src="assets/images/car-7.avif" alt="" class="cta-bg-img" loading="lazy" />
+      <div class="cta-bg-overlay"></div>
+    </div>
+    <div class="cta-glow"></div>
+    <div class="con cta-content fadeUp">
+      <div class="eyebrow tc" style="justify-content:center">LIMITED TIME OFFER</div>
+      <h2>READY TO SELL<br><span class="hl">YOUR BIKE?</span></h2>
+      <p>Get the best price. Instant payment. Completely hassle-free experience.<br>Join 5,000+ happy sellers who chose
+        REVN Motors.</p>
+      <div class="cta-btns">
+        <a href="sell.html" class="btn-p">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 8 16 12 12 16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+          CHECK MY BIKE'S VALUE
+        </a>
+        <a href="#contact" class="btn-s">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.73 4.19 2 2 0 0 1 4.71 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 18z" />
+          </svg>
+          CONTACT US
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     FOOTER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <footer id="footer">
+    <div class="foot-grid">
+      <!-- Brand -->
+      <div>
+        <div class="foot-logo"><span>REVN</span> MOTORS</div>
+        <p class="foot-desc">We buy all types of used bikes at the best market value. Instant payment, free inspection
+          and complete RC transfer support — across 20+ cities.</p>
+        <div class="foot-soc">
+          <a href="#" class="soc-btn" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <a href="#" class="soc-btn" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+          </a>
+          <a href="#" class="soc-btn" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+            </svg>
+          </a>
+          <a href="#" class="soc-btn" aria-label="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <!-- Quick Links -->
+      <div>
+        <div class="foot-ttl">Quick Links</div>
+        <ul class="foot-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="sell.html">Sell Your Bike</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <!-- Help -->
+      <div>
+        <div class="foot-ttl">Help</div>
+        <ul class="foot-links">
+          <li><a href="#faq">FAQ's</a></li>
+          <li><a href="#bikes">Blogs</a></li>
+          <li><a href="#footer">Privacy Policy</a></li>
+          <li><a href="#footer">Terms &amp; Conditions</a></li>
+          <li><a href="#compare">How We Compare</a></li>
+        </ul>
+      </div>
+      <!-- Contact Info -->
+      <div>
+        <div class="foot-ttl">Contact Us</div>
+        <div class="ci">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.73 4.19 2 2 0 0 1 4.71 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 18z" />
+          </svg>
+          +91 98765 43210
+        </div>
+        <div class="ci">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          info@revnmotors.in
+        </div>
+        <div class="ci">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          123, Race Track Road, Guindy Industrial Estate, Chennai — 600032
+        </div>
+      </div>
+    </div>
+    <!-- Bottom bar -->
+    <div class="foot-btm">
+      <div class="foot-copy">Â© 2025 REVN Motors. All Rights Reserved.</div>
+      <div class="foot-btm-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/919876543210" class="wa-btn" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path
+        d="M12.05.024C5.495.024.03 5.49.03 12.045c0 2.124.555 4.122 1.526 5.857L.03 24l6.294-1.65a11.95 11.95 0 0 0 5.726 1.456h.005c6.554 0 11.999-5.464 12.002-12.017C24.061 5.497 18.605.024 12.05.024zm-.005 21.972a9.93 9.93 0 0 1-5.065-1.386l-.363-.216-3.763.986 1.004-3.664-.237-.378a9.93 9.93 0 0 1-1.523-5.309c.003-5.504 4.483-9.982 9.99-9.982 2.669 0 5.174 1.04 7.058 2.929a9.93 9.93 0 0 1 2.921 7.056c-.004 5.507-4.483 9.984-9.989 9.984z"
+        fill-rule="evenodd" />
+    </svg>
+  </a>
+
+
+  <!-- SCROLL TO TOP -->
+  <button id="scrollTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/forms.js" defer></script>
+
+</body>
+
+</html>

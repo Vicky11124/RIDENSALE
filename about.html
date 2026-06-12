@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — REVN Motors</title>
+  <meta name="description"
+    content="Learn about REVN Motors — your trusted platform for quality pre-owned motorcycles. Transparent dealings, expert assistance, and a customer-first buying experience." />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23080808'/><text y='22' x='4' font-size='18' font-weight='900' fill='%23FF6600' font-family='sans-serif'>R</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;900&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" />
+</head>
+
+<body>
+
+  <div id="scroll-progress"></div>
+  <div id="cur-dot"></div>
+  <div class="carbon-overlay"></div>
+  <canvas id="ptx"></canvas>
+  <div id="navOverlay"
+    style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;backdrop-filter:blur(4px)"></div>
+
+  <div id="loader">
+    <div class="ld-logo"><span>REVN</span> MOTORS</div>
+    <div class="ld-tag">Starting Engine...</div>
+    <div class="ld-rpm-wrap">
+      <div class="ld-tach" aria-hidden="true">
+        <svg viewBox="0 0 260 160" class="ld-tach-svg" focusable="false">
+          <path class="ld-tach-bg" d="M 42 118 A 88 88 0 0 1 218 118" />
+          <path class="ld-tach-red" d="M 174 52 A 88 88 0 0 1 218 118" />
+          <g class="ld-tick" transform="rotate(-90 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">0</text>
+          </g>
+          <g class="ld-tick" transform="rotate(-60 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">2</text>
+          </g>
+          <g class="ld-tick" transform="rotate(-30 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">4</text>
+          </g>
+          <g class="ld-tick" transform="rotate(0 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">6</text>
+          </g>
+          <g class="ld-tick" transform="rotate(30 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">8</text>
+          </g>
+          <g class="ld-tick ld-tick-red" transform="rotate(60 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label ld-tick-red" x="130" y="28"
+              text-anchor="middle">10</text>
+          </g>
+          <g class="ld-tick ld-tick-red" transform="rotate(90 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label ld-tick-red" x="130" y="28"
+              text-anchor="middle">12</text>
+          </g>
+          <text class="ld-tach-unit" x="130" y="152" text-anchor="middle">x1000 RPM</text>
+          <g id="rpmNeedle" class="ld-needle">
+            <line x1="130" y1="118" x2="130" y2="42" />
+            <circle cx="130" cy="118" r="7" />
+          </g>
+        </svg>
+      </div>
+      <div class="ld-val"><span id="rpmVal">0</span> <span>RPM</span></div>
+    </div>
+    <div class="ld-bars">
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+    </div>
+  </div>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo"><span>REVN</span> MOTORS<sub>®</sub></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li class="nav-sell-drop">
+        <a href="sell.html" class="nav-sell-trigger">Sell <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="3">
+            <polyline points="6 9 12 15 18 9" />
+          </svg></a>
+        <ul class="sell-dropdown">
+          <li><a href="sell.html">Sell Bike</a></li>
+          <li><a href="sell.html?tab=car">Sell Car</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#faq">FAQ's</a></li>
+      <li><a href="sell.html" class="nav-cta">GET FREE VALUATION</a></li>
+    </ul>
+    <button class="hamburger" id="ham" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <nav class="mob-nav" id="mobNav">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="services.html">Services</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="sell.html">Sell Bike</a>
+    <a href="sell.html?tab=car">Sell Car</a>
+    <a href="index.html#faq">FAQ's</a>
+    <a href="sell.html" class="nav-cta btn-p">GET FREE VALUATION</a>
+  </nav>
+
+  <header class="page-hero">
+    <div class="con about-slide-left">
+      <div class="eyebrow" style="justify-content:center">WHO WE ARE</div>
+      <h1 class="page-hero-title">ABOUT <span class="hl">REVN MOTORS</span></h1>
+      <p class="page-hero-sub">Connecting riders with the right motorcycle — quality pre-owned bikes, transparent
+        dealings, and a customer-first experience.</p>
+      <div class="redline c" style="margin-top:1.2rem"></div>
+    </div>
+  </header>
+
+  <section class="sp about-mission-section" style="padding-top:3rem">
+    <div class="con">
+      <div class="about-mission about-slide-right">
+        <div class="eyebrow">OUR MISSION</div>
+        <p>To make buying and selling pre-owned motorcycles simple, transparent, and trustworthy while helping riders
+          find bikes that suit their lifestyle, needs, and budget.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp about-intro">
+    <div class="con">
+      <div class="tc fadeUp">
+        <div class="eyebrow" style="justify-content:center">OUR STORY</div>
+        <h2 class="sec-title">EVERY BIKE HAS A <span class="hl">STORY</span></h2>
+        <div class="redline c"></div>
+      </div>
+      <div class="about-intro-grid" style="margin-top:2.5rem">
+        <div class="about-intro-text fadeUp">
+          <p>At REVN Motors, we are passionate about connecting riders with the right motorcycle. Whether you're looking
+            for a reliable daily commuter, a stylish cruiser, an adventure machine, or a high-performance superbike, we
+            provide a trusted platform to buy quality pre-owned bikes with confidence.</p>
+          <p>We understand that purchasing a motorcycle is more than just a transaction — it's an investment in freedom,
+            convenience, and passion. That's why we focus on offering carefully selected motorcycles, transparent
+            dealings, and a customer-first experience.</p>
+        </div>
+        <div class="about-stats fadeUp">
+          <div class="about-stat">
+            <div class="about-stat-num">5,000+</div>
+            <div class="about-stat-lbl">Happy Riders</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">20+</div>
+            <div class="about-stat-lbl">Cities Covered</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">100+</div>
+            <div class="about-stat-lbl">Bikes Available</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">100%</div>
+            <div class="about-stat-lbl">Transparent Process</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp">
+    <div class="con">
+      <div class="tc fadeUp">
+        <div class="eyebrow" style="justify-content:center">WHAT WE DO</div>
+        <h2 class="sec-title">BUILT FOR <span class="hl">RIDERS</span></h2>
+        <div class="redline c"></div>
+      </div>
+      <div class="feat-grid about-feat-grid">
+        <div class="feat-card feat-pop-left fadeUp">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="5.5" cy="17.5" r="3.5" />
+              <circle cx="18.5" cy="17.5" r="3.5" />
+              <path d="M15 6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11" />
+              <path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2" />
+              <path d="M21 11H9" />
+            </svg>
+          </div>
+          <h3>Quality Pre-Owned Bikes</h3>
+          <p>We offer a wide range of motorcycles, from everyday commuter bikes to premium performance machines.</p>
+        </div>
+        <div class="feat-card feat-pop-up fadeUp">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <h3>Trusted Transactions</h3>
+          <p>Our goal is to ensure every customer enjoys a smooth and hassle-free buying experience.</p>
+        </div>
+        <div class="feat-card feat-pop-right fadeUp">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <h3>Expert Assistance</h3>
+          <p>Whether you're a first-time buyer or an experienced rider, our team is here to help you make the right
+            choice.</p>
+        </div>
+        <div class="feat-card feat-pop-up fadeUp">
+          <div class="feat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </div>
+          <h3>Customer-Centric Service</h3>
+          <p>We believe in building lasting relationships through honesty, transparency, and reliable support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp about-why-section">
+    <div class="con">
+      <div class="about-why-grid">
+        <div class="fadeUp">
+          <div class="eyebrow">WHY CHOOSE US</div>
+          <h2 class="sec-title">WHY CHOOSE <span class="hl">REVN MOTORS?</span></h2>
+          <div class="redline"></div>
+        </div>
+        <ul class="about-checklist fadeUp">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Wide selection of quality pre-owned motorcycles
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Transparent and trustworthy process
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Customer-focused approach
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Assistance throughout the buying journey
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Passionate team with deep knowledge of motorcycles
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Commitment to quality and satisfaction
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp">
+    <div class="con">
+      <div class="about-marketplace fadeUp">
+        <div class="tc">
+          <div class="eyebrow" style="justify-content:center">BEYOND THE SHOWROOM</div>
+          <h2 class="sec-title">MORE THAN A <span class="hl">MOTORCYCLE MARKETPLACE</span></h2>
+          <div class="redline c"></div>
+        </div>
+        <p>REVN Motors is built for riders, by people who understand the excitement of owning the perfect bike. We believe
+          every rider deserves access to quality motorcycles and dependable service, regardless of experience level or
+          riding preference.</p>
+        <p>From city streets to open highways, we're here to help you find a motorcycle that matches your journey.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta" class="sp cta-section">
+    <div class="cta-bg-container">
+      <img src="assets/images/car-7.avif" alt="" class="cta-bg-img" loading="lazy" />
+      <div class="cta-bg-overlay"></div>
+    </div>
+    <div class="cta-glow"></div>
+    <div class="con cta-content fadeUp">
+      <div class="eyebrow tc" style="justify-content:center">START YOUR NEXT RIDE</div>
+      <h2>YOUR NEXT MOTORCYCLE IS <span class="hl">WAITING</span></h2>
+      <p>Explore our collection, discover great deals, and experience a smarter way to buy and sell pre-owned bikes with
+        REVN Motors.</p>
+      <div class="cta-btns">
+        <a href="index.html" class="btn-p">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          EXPLORE COLLECTION
+        </a>
+        <a href="sell.html" class="btn-s">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 8 16 12 12 16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+          SELL YOUR BIKE
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><span>REVN</span> MOTORS</div>
+        <p class="foot-desc">We buy all types of used bikes at the best market value. Instant payment, free inspection
+          and complete RC transfer support — across 20+ cities.</p>
+        <div class="foot-soc">
+          <a href="#" class="soc-btn" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <a href="#" class="soc-btn" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+          </a>
+          <a href="#" class="soc-btn" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+            </svg>
+          </a>
+          <a href="#" class="soc-btn" aria-label="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="foot-ttl">Quick Links</div>
+        <ul class="foot-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="sell.html">Sell Your Bike</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-ttl">Help</div>
+        <ul class="foot-links">
+          <li><a href="index.html#faq">FAQ's</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-ttl">Contact Us</div>
+        <div class="ci">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.82 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.73 4.19 2 2 0 0 1 4.71 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 18z" />
+          </svg>
+          +91 98765 43210
+        </div>
+        <div class="ci">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          info@revnmotors.in
+        </div>
+        <div class="ci">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          123, Race Track Road, Guindy Industrial Estate, Chennai — 600032
+        </div>
+      </div>
+    </div>
+    <div class="foot-btm">
+      <div class="foot-copy">© 2025 REVN Motors. All Rights Reserved.</div>
+      <div class="foot-btm-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919876543210" class="wa-btn" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path
+        d="M12.05.024C5.495.024.03 5.49.03 12.045c0 2.124.555 4.122 1.526 5.857L.03 24l6.294-1.65a11.95 11.95 0 0 0 5.726 1.456h.005c6.554 0 11.999-5.464 12.002-12.017C24.061 5.497 18.605.024 12.05.024zm-.005 21.972a9.93 9.93 0 0 1-5.065-1.386l-.363-.216-3.763.986 1.004-3.664-.237-.378a9.93 9.93 0 0 1-1.523-5.309c.003-5.504 4.483-9.982 9.99-9.982 2.669 0 5.174 1.04 7.058 2.929a9.93 9.93 0 0 1 2.921 7.056c-.004 5.507-4.483 9.984-9.989 9.984z"
+        fill-rule="evenodd" />
+    </svg>
+  </a>
+
+  <button id="scrollTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>
