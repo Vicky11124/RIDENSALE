@@ -1,5 +1,5 @@
 /* ============================================
-   REVN MOTORS — MAIN JAVASCRIPT
+   RIDENSALE — MAIN JAVASCRIPT
    ============================================ */
 
 (function () {
@@ -286,15 +286,22 @@
         let alpha = lifePct * 0.32;
 
         if (lifePct > 0 && !pointInNoParticleZone(p.x, p.y, excludeRects)) {
-          let grad = ctx.createRadialGradient(p.x, p.y, p.r * 0.05, p.x, p.y, p.r);
-          grad.addColorStop(0, `rgba(215, 215, 215, ${alpha})`);
-          grad.addColorStop(0.35, `rgba(200, 200, 200, ${alpha * 0.55})`);
-          grad.addColorStop(1, `rgba(180, 180, 180, 0)`);
+          if (p.isSpark) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 102, 0, ${lifePct * 0.95})`;
+            ctx.fill();
+          } else {
+            let grad = ctx.createRadialGradient(p.x, p.y, p.r * 0.05, p.x, p.y, p.r);
+            grad.addColorStop(0, `rgba(215, 215, 215, ${alpha})`);
+            grad.addColorStop(0.35, `rgba(200, 200, 200, ${alpha * 0.55})`);
+            grad.addColorStop(1, `rgba(180, 180, 180, 0)`);
 
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fill();
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
         }
 
         return p.life > 0;
@@ -363,12 +370,115 @@
   });
 
   /* ── 9. SCROLL ANIMATIONS ────────────────── */
+  function trackSlideSmoke(element, direction) {
+    if (isMobile) return;
+    
+    // Select the paragraph text inside the container as requested, with fallback to headings
+    let target = element.querySelector('p, .page-hero-sub');
+    if (!target) {
+      target = element.querySelector('h1, h2, .page-hero-title, .sec-title, .eyebrow');
+    }
+    if (!target) {
+      target = element;
+    }
+    
+    let lastRect = element.getBoundingClientRect();
+    let startTime = performance.now();
+    const duration = 1450; // matches var(--about-slide-duration)
+    
+    function update() {
+      let now = performance.now();
+      let elapsed = now - startTime;
+      if (elapsed > duration) return;
+      
+      let rect = element.getBoundingClientRect();
+      let dx = rect.left - lastRect.left;
+      
+      if (Math.abs(dx) > 0.5) {
+        let tRect = target.getBoundingClientRect();
+        if (tRect.width >= 5 && tRect.height >= 5) {
+          // Spawn a dense, premium stream from the single target text element
+          const count = 3;
+          for (let i = 0; i < count; i++) {
+            let pct = Math.random();
+            let y = tRect.top + pct * tRect.height;
+            let x, vx, vy;
+            
+            if (direction === "left-to-right") {
+              x = tRect.left;
+              vx = -dx * 0.22 - (Math.random() * 2 + 1);
+              vy = (Math.random() - 0.5) * 1.5;
+            } else {
+              x = tRect.right;
+              vx = -dx * 0.22 + (Math.random() * 2 + 1);
+              vy = (Math.random() - 0.5) * 1.5;
+            }
+            
+            // Spawn smoke puff
+            smoke.push({
+              x: x,
+              y: y,
+              vx: vx,
+              vy: vy,
+              r: Math.random() * 6 + 10,
+              life: Math.random() * 25 + 30,
+              maxLife: 60,
+              growth: Math.random() * 0.18 + 0.25
+            });
+            
+            // Spawn orange spark
+            if (Math.random() < 0.45) {
+              smoke.push({
+                x: x,
+                y: y,
+                vx: vx * 1.3 + (Math.random() - 0.5) * 2.5,
+                vy: vy * 1.3 + (Math.random() - 0.5) * 2.5,
+                r: Math.random() * 2 + 1,
+                life: Math.random() * 12 + 12,
+                maxLife: 25,
+                growth: -0.02,
+                isSpark: true
+              });
+            }
+          }
+        }
+      }
+      
+      lastRect = rect;
+      requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
   function initScrollAnimations() {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("on"); obs.unobserve(e.target); } }),
       { threshold: 0.12 }
     );
-    document.querySelectorAll(".fadeUp, .slideRight, .about-slide-left, .about-slide-right").forEach((el) => obs.observe(el));
+    document.querySelectorAll(".fadeUp, .slideRight, .slideLeftPop, .img-mask-reveal, .flowchart-step").forEach((el) => obs.observe(el));
+
+    const aboutSlideObs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("on");
+          aboutSlideObs.unobserve(e.target);
+          if (e.target.classList.contains("about-slide-left")) {
+            trackSlideSmoke(e.target, "left-to-right");
+          } else if (e.target.classList.contains("about-slide-right")) {
+            trackSlideSmoke(e.target, "right-to-left");
+          }
+        }
+      }),
+      { threshold: 0, rootMargin: "0px 100% 0px 100%" }
+    );
+    document.querySelectorAll(".about-slide-left, .about-slide-right, .slideRightBorder").forEach((el) => aboutSlideObs.observe(el));
+    requestAnimationFrame(() => {
+      document.querySelectorAll(".page-hero .about-slide-left").forEach((el) => {
+        el.classList.add("on");
+        aboutSlideObs.unobserve(el);
+        trackSlideSmoke(el, "left-to-right");
+      });
+    });
 
     const featGrid = document.querySelector(".feat-grid");
     const whySection = document.getElementById("why");
