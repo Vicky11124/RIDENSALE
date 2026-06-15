@@ -3478,3 +3478,570 @@ section {
     max-width: 100%;
   }
 }
+
+/* ==========================================
+   COMPREHENSIVE MOBILE OPTIMIZATION
+   ========================================== */
+
+/* ── TOUCH DEVICES — Disable custom cursor ── */
+@media (hover: none) and (pointer: coarse) {
+  body,
+  a,
+  button {
+    cursor: auto !important;
+  }
+
+  #cur-dot {
+    display: none !important;
+  }
+
+  .faq-q {
+    cursor: pointer;
+  }
+
+  .sell-tab {
+    cursor: pointer;
+  }
+
+  /* Disable heavy backdrop blur on low-power devices */
+  .feat-card,
+  .faq-item,
+  .sell-form-card,
+  .flowchart-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(18, 18, 18, 0.85);
+  }
+
+  /* Disable hover transforms on touch */
+  .feat-card:hover {
+    transform: none;
+  }
+
+  .flowchart-step:hover .flowchart-card {
+    transform: none;
+  }
+
+  .flowchart-step:hover .flowchart-node {
+    transform: translateY(-50%);
+  }
+}
+
+/* ── 1100px — Tablet landscape ────────────── */
+@media (max-width: 1100px) {
+  .hero-con-center {
+    padding-top: 9rem !important;
+    padding-bottom: 5rem !important;
+  }
+
+  .hero-center {
+    padding: 2.5rem 2rem;
+  }
+
+  .hero-glow-orb-1 {
+    width: 320px;
+    height: 320px;
+  }
+
+  .hero-glow-orb-2 {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+/* ── 768px — Tablet portrait / large phone ── */
+@media (max-width: 768px) {
+  /* Nav logo */
+  .nav-logo img {
+    height: 55px;
+    margin-top: -6px;
+    margin-bottom: -6px;
+  }
+
+  #nav.stuck .nav-logo img {
+    height: 48px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+  }
+
+  /* Hero adjustments */
+  .hero-con-center {
+    padding-top: 7rem !important;
+    padding-bottom: 3.5rem !important;
+    min-height: auto;
+  }
+
+  .hero-center {
+    padding: 2rem 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-sub br {
+    display: none;
+  }
+
+  .hero-perks {
+    gap: 0.6rem 1rem;
+    margin-bottom: 1.8rem;
+    justify-content: center;
+  }
+
+  .hp {
+    font-size: 0.65rem;
+  }
+
+  .hero-btns {
+    gap: 0.75rem;
+  }
+
+  /* Hero glow orbs — smaller */
+  .hero-glow-orb-1 {
+    width: 200px;
+    height: 200px;
+    filter: blur(80px);
+  }
+
+  .hero-glow-orb-2 {
+    width: 220px;
+    height: 220px;
+    filter: blur(80px);
+  }
+
+  /* Section titles */
+  .sec-title {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+
+  /* Steps grid — 2 columns on tablet */
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* CTA section */
+  .cta-content h2 {
+    font-size: clamp(1.8rem, 6vw, 3rem);
+  }
+
+  .cta-content p {
+    font-size: 0.92rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Contact info in footer */
+  .ci {
+    font-size: 0.82rem;
+  }
+
+  /* Scroll top button */
+  #scrollTop {
+    bottom: 1.5rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+  }
+
+  /* WhatsApp button */
+  .wa-btn {
+    bottom: 1.5rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ── 600px — Small tablet / large phone ───── */
+@media (max-width: 600px) {
+  /* Hero */
+  .hero-section {
+    min-height: auto;
+  }
+
+  .hero-con-center {
+    padding-top: 6rem !important;
+    padding-bottom: 3rem !important;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 7.5vw, 2.2rem);
+    letter-spacing: -0.01em;
+  }
+
+  .hero-sub {
+    font-size: 0.85rem;
+  }
+
+  .hero-perks {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* About page hero */
+  .page-hero {
+    padding: 7rem 1rem 2.5rem;
+  }
+
+  .page-hero-title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .page-hero-sub {
+    font-size: 0.92rem;
+  }
+
+  /* Steps grid — single column on phone */
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  /* About mission */
+  .about-mission {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .about-mission p {
+    font-size: 0.92rem;
+  }
+
+  /* CTA */
+  .cta-content h2 {
+    font-size: clamp(1.5rem, 6.5vw, 2.2rem);
+  }
+
+  /* Eyebrow */
+  .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+  }
+
+  /* Section padding */
+  .sp {
+    padding: 4rem 1.2rem;
+  }
+
+  /* Footer */
+  #footer {
+    padding: 2.5rem 1.2rem 1.2rem;
+  }
+
+  .foot-logo {
+    font-size: 1.4rem;
+  }
+
+  .foot-btm-links {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Sell form responsive */
+  .sell-form-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+
+  .sell-form-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ── 480px — Small phone ──────────────────── */
+@media (max-width: 480px) {
+  /* Nav */
+  #nav {
+    padding: 0.8rem 1rem;
+  }
+
+  #nav.stuck {
+    padding: 0.6rem 1rem;
+  }
+
+  .nav-logo img {
+    height: 45px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+  }
+
+  #nav.stuck .nav-logo img {
+    height: 40px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+  }
+
+  /* Hero */
+  .hero-con-center {
+    padding-top: 5.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .hero-center {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.3rem, 7vw, 1.8rem);
+    line-height: 1.15;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero-sub {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .hp {
+    font-size: 0.6rem;
+  }
+
+  .btn-p,
+  .btn-s {
+    padding: 0.75rem 1.4rem;
+    font-size: 0.8rem;
+  }
+
+  /* Sections */
+  .sp {
+    padding: 3.5rem 1rem;
+  }
+
+  .sec-title {
+    font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+  }
+
+  /* Feat cards */
+  .feat-card {
+    padding: 1.2rem 1rem;
+  }
+
+  .feat-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 1rem;
+  }
+
+  .feat-card h3 {
+    font-size: 0.88rem;
+  }
+
+  .feat-card p {
+    font-size: 0.8rem;
+  }
+
+  /* FAQ */
+  .faq-q {
+    padding: 1rem 1.1rem;
+    font-size: 0.82rem;
+    gap: 0.75rem;
+  }
+
+  .faq-a-in {
+    padding: 0 1.1rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  /* CTA */
+  .cta-content h2 {
+    font-size: clamp(1.3rem, 6vw, 1.8rem);
+  }
+
+  .cta-content p {
+    font-size: 0.82rem;
+  }
+
+  .cta-btns .btn-p,
+  .cta-btns .btn-s {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer */
+  #footer {
+    padding: 2rem 1rem 1rem;
+  }
+
+  .foot-grid {
+    gap: 2rem;
+  }
+
+  .foot-desc {
+    font-size: 0.82rem;
+  }
+
+  .foot-ttl {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .foot-links a {
+    font-size: 0.8rem;
+  }
+
+  .ci {
+    font-size: 0.78rem;
+  }
+
+  .foot-copy,
+  .foot-btm-links a {
+    font-size: 0.68rem;
+  }
+
+  /* Loader */
+  .ld-logo-img {
+    height: clamp(90px, 18vh, 140px);
+  }
+
+  .ld-logo {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  /* About checklist */
+  .about-checklist li {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  /* Flowchart */
+  .flowchart-card {
+    padding: 1.2rem;
+  }
+
+  .flowchart-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .flowchart-card p {
+    font-size: 0.8rem;
+  }
+
+  .flowchart-step {
+    padding: 1rem 0 1rem 45px !important;
+  }
+
+  /* Marquee */
+  .marq-item {
+    font-size: 0.65rem;
+    padding-right: 2rem;
+  }
+
+  .brand-logo-img {
+    height: 1.2em;
+    margin-right: 0.4rem;
+  }
+
+  /* Sell tabs */
+  .sell-tab {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* Scroll top */
+  #scrollTop {
+    bottom: 1rem;
+    right: 0.8rem;
+    width: 34px;
+    height: 34px;
+  }
+
+  .wa-btn {
+    bottom: 1rem;
+    right: 0.8rem;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ── 360px — Extra small phone ────────────── */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.2rem;
+  }
+
+  .hero-sub {
+    font-size: 0.75rem;
+  }
+
+  .sec-title {
+    font-size: 1.2rem;
+  }
+
+  .nav-logo img {
+    height: 38px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+  }
+
+  .btn-p,
+  .btn-s {
+    padding: 0.65rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .sell-form-card {
+    padding: 1.2rem;
+  }
+
+  .about-stat-num {
+    font-size: 1.4rem;
+  }
+
+  .about-stat-lbl {
+    font-size: 0.6rem;
+  }
+}
+
+/* ── Landscape phone optimization ─────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-section {
+    min-height: auto;
+  }
+
+  .hero-con-center {
+    min-height: auto;
+    padding-top: 5rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-sub {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-perks {
+    margin-bottom: 1rem;
+  }
+
+  #loader {
+    gap: 0.8rem;
+  }
+
+  .ld-logo-img {
+    height: 80px;
+  }
+
+  .ld-logo {
+    font-size: 1.8rem;
+  }
+
+  .ld-rpm-wrap {
+    width: min(200px, 60vw);
+  }
+}
