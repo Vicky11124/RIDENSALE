@@ -33,6 +33,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -40,6 +41,8 @@ body {
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
   cursor: none;
   line-height: 1.6;
 }
@@ -817,14 +820,20 @@ ul {
   flex-direction: column;
   gap: 5px;
   z-index: 1001;
+  background: var(--card);
+  border: 1px solid rgba(255, 102, 0, 0.4);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .hamburger span {
-  width: 24px;
+  width: 22px;
   height: 2px;
-  background: #fff;
+  background: var(--accent);
   transition: all .3s;
   display: block;
+  border-radius: 2px;
 }
 
 .hamburger.open span:nth-child(1) {
@@ -3476,6 +3485,23 @@ section {
 
   .flowchart-card {
     max-width: 100%;
+  }
+}
+
+/* ==========================================
+   CONTACT GRID
+   ========================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+@media(max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
