@@ -4,7 +4,7 @@ function handleContact(e) {
   btn.innerHTML = '✓ DIRECTING TO WHATSAPP...';
   btn.style.background = '#22c55e';
   setTimeout(() => {
-    window.open("https://wa.me/918056390246", "_blank");
+    window.open("https://wa.me/918807182287", "_blank");
     btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> SEND MESSAGE';
     btn.style.background = '';
     e.target.reset();
@@ -53,7 +53,7 @@ function handleSellForm(e, type) {
   let message = `Hi, I want to sell my ${type}.\n\nDetails:\n${details.join('\n')}`;
 
   setTimeout(() => {
-    window.open("https://wa.me/918056390246?text=" + encodeURIComponent(message), "_blank");
+    window.open("https://wa.me/918807182287?text=" + encodeURIComponent(message), "_blank");
     btn.innerHTML = orig;
     btn.style.background = '';
     btn.disabled = false;
