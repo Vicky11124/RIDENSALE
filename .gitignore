@@ -18,3 +18,5 @@ __pycache__/
 dist/
 build/
 .cache/
+.gemini/
+.antigravity/
