@@ -1,0 +1,49 @@
+# ==================================================
+# robots.txt — RideNSale (https://www.ridensale.in)
+# Updated: 2026-07-29
+# ==================================================
+
+# ---- All crawlers ----
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /sell
+Allow: /faq
+Allow: /blog
+Allow: /blog-best-bikes-chennai
+Allow: /blog-sell-bike-fast
+Allow: /blog-rc-transfer-guide
+Allow: /blog-price-guide
+Allow: /blog-valuation-tips
+Allow: /assets/
+Disallow: /assets/videos/
+
+# ---- Googlebot ----
+User-agent: Googlebot
+Allow: /
+Allow: /assets/images/
+Allow: /assets/logo/
+Allow: /assets/favicon/
+Disallow: /assets/videos/
+
+# ---- Bingbot ----
+User-agent: Bingbot
+Allow: /
+Disallow: /assets/videos/
+
+# ---- Block unwanted bots ----
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# ---- Sitemap ----
+Sitemap: https://www.ridensale.in/sitemap.xml
