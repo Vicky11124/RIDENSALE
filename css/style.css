@@ -2334,91 +2334,50 @@ section {
   opacity: 1;
 }
 
-/* FAQ — top-to-bottom staggered pop-in */
+/* ── FAQ — Smooth slow top-to-bottom motion ────────────────────────────── */
 .faq-pop-up {
   opacity: 0;
-  transform: translateY(-72px) scale(0.94);
-  filter: blur(5px);
-  will-change: transform, opacity, filter;
+  transform: translateY(-40px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
 }
 
 .faq-pop-up.on {
-  animation: faqPopUp 0.95s cubic-bezier(0.22, 1.12, 0.36, 1) both;
-  animation-delay: calc(var(--faq-i, 0) * 0.14s);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Column layout: animate bottom row first, then up */
-.faq-cols .faq-pop-up:nth-child(4) {
-  --faq-i: 0;
-}
-
-.faq-cols .faq-pop-up:nth-child(8) {
-  --faq-i: 1;
-}
-
-.faq-cols .faq-pop-up:nth-child(3) {
-  --faq-i: 2;
-}
-
-.faq-cols .faq-pop-up:nth-child(7) {
-  --faq-i: 3;
-}
-
-.faq-cols .faq-pop-up:nth-child(2) {
-  --faq-i: 4;
-}
-
+/* Stagger top-to-bottom: 2 columns (Row 1: 1&6, Row 2: 2&7, Row 3: 3&8, Row 4: 4&9, Row 5: 5&10) */
+.faq-cols .faq-pop-up:nth-child(1),
 .faq-cols .faq-pop-up:nth-child(6) {
-  --faq-i: 5;
+  transition-delay: 0.05s;
 }
 
-.faq-cols .faq-pop-up:nth-child(1) {
-  --faq-i: 6;
+.faq-cols .faq-pop-up:nth-child(2),
+.faq-cols .faq-pop-up:nth-child(7) {
+  transition-delay: 0.18s;
 }
 
-.faq-cols .faq-pop-up:nth-child(5) {
-  --faq-i: 7;
+.faq-cols .faq-pop-up:nth-child(3),
+.faq-cols .faq-pop-up:nth-child(8) {
+  transition-delay: 0.31s;
 }
 
-@keyframes faqPopUp {
-  0% {
-    opacity: 0;
-    transform: translateY(-72px) scale(0.92);
-    filter: blur(8px);
-    box-shadow: 0 -24px 40px rgba(255, 102, 0, 0);
-  }
+.faq-cols .faq-pop-up:nth-child(4),
+.faq-cols .faq-pop-up:nth-child(9) {
+  transition-delay: 0.44s;
+}
 
-  55% {
-    opacity: 1;
-    transform: translateY(10px) scale(1.03);
-    filter: blur(0);
-    box-shadow: 0 -16px 36px rgba(255, 102, 0, 0.12);
-    border-color: rgba(255, 102, 0, 0.22);
-  }
-
-  78% {
-    transform: translateY(-5px) scale(0.99);
-    box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.25);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-    box-shadow: none;
-    border-color: var(--border2);
-  }
+.faq-cols .faq-pop-up:nth-child(5),
+.faq-cols .faq-pop-up:nth-child(10) {
+  transition-delay: 0.57s;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .faq-pop-up {
     opacity: 1;
     transform: none;
-    filter: none;
-  }
-
-  .faq-pop-up.on {
-    animation: none;
+    transition: none;
   }
 }
 
@@ -2852,37 +2811,16 @@ section {
     column-count: 1;
   }
 
-  .faq-cols .faq-pop-up:nth-child(8) {
-    --faq-i: 0;
-  }
-
-  .faq-cols .faq-pop-up:nth-child(7) {
-    --faq-i: 1;
-  }
-
-  .faq-cols .faq-pop-up:nth-child(6) {
-    --faq-i: 2;
-  }
-
-  .faq-cols .faq-pop-up:nth-child(5) {
-    --faq-i: 3;
-  }
-
-  .faq-cols .faq-pop-up:nth-child(4) {
-    --faq-i: 4;
-  }
-
-  .faq-cols .faq-pop-up:nth-child(3) {
-    --faq-i: 5;
-  }
-
-  .faq-cols .faq-pop-up:nth-child(2) {
-    --faq-i: 6;
-  }
-
-  .faq-cols .faq-pop-up:nth-child(1) {
-    --faq-i: 7;
-  }
+  .faq-cols .faq-pop-up:nth-child(1) { transition-delay: 0.05s; }
+  .faq-cols .faq-pop-up:nth-child(2) { transition-delay: 0.15s; }
+  .faq-cols .faq-pop-up:nth-child(3) { transition-delay: 0.25s; }
+  .faq-cols .faq-pop-up:nth-child(4) { transition-delay: 0.35s; }
+  .faq-cols .faq-pop-up:nth-child(5) { transition-delay: 0.45s; }
+  .faq-cols .faq-pop-up:nth-child(6) { transition-delay: 0.55s; }
+  .faq-cols .faq-pop-up:nth-child(7) { transition-delay: 0.65s; }
+  .faq-cols .faq-pop-up:nth-child(8) { transition-delay: 0.75s; }
+  .faq-cols .faq-pop-up:nth-child(9) { transition-delay: 0.85s; }
+  .faq-cols .faq-pop-up:nth-child(10) { transition-delay: 0.95s; }
 
   /* Steps 1100px responsive */
   .steps {
@@ -3688,7 +3626,7 @@ section {
 
   /* Scroll top button */
   #scrollTop {
-    bottom: 1.5rem;
+    bottom: 5rem;
     right: 1rem;
     width: 36px;
     height: 36px;
@@ -4022,7 +3960,7 @@ section {
 
   /* Scroll top */
   #scrollTop {
-    bottom: 1rem;
+    bottom: 4.2rem;
     right: 0.8rem;
     width: 34px;
     height: 34px;
@@ -4500,4 +4438,116 @@ section {
   font-family: var(--font-b);
   font-size: 1.1rem;
   display: none;
+}
+
+/* ──────────────────────────────────────────────────
+   LIGHTWEIGHT MOBILE CARD & STEP MOTION (PREVENTS MOBILE LAG)
+   ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Disable heavy 3D pop-ins, tilts, blurs and keyframe delays on mobile cards & steps */
+  .feat-pop-left,
+  .feat-pop-up,
+  .feat-pop-right,
+  .faq-pop-up,
+  .blog-card,
+  .glass-card,
+  .spec-card,
+  .about-stat,
+  .about-mission,
+  .about-slide-left,
+  .about-slide-right,
+  .slideRight,
+  .slideRightBorder,
+  .slideLeftPop,
+  .flowchart-step,
+  .step,
+  .fadeUp {
+    will-change: opacity, transform;
+    filter: none !important;
+    transform: none;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out !important;
+  }
+
+  /* Simple lightweight vertical fade-in on scroll trigger */
+  .feat-pop-left.on,
+  .feat-pop-up.on,
+  .feat-pop-right.on,
+  .faq-pop-up.on,
+  .about-slide-left.on,
+  .about-slide-right.on,
+  .slideRight.on,
+  .slideRightBorder.on,
+  .slideLeftPop.on,
+  .step.on,
+  .fadeUp.on {
+    animation: simpleMobileFadeIn 0.35s ease-out both !important;
+  }
+
+  /* Reset long staggered delays on mobile for fast responsive load */
+  .steps .step:nth-child(1),
+  .steps .step:nth-child(2),
+  .steps .step:nth-child(3),
+  .steps .step:nth-child(4),
+  .steps .step:nth-child(5),
+  .feat-grid .feat-card:nth-child(1).on,
+  .feat-grid .feat-card:nth-child(2).on,
+  .feat-grid .feat-card:nth-child(3).on,
+  .feat-grid .feat-card:nth-child(4).on,
+  .feat-grid .feat-card:nth-child(5).on,
+  .feat-grid .feat-card:nth-child(6).on,
+  .feat-grid .feat-card:nth-child(1).on .feat-icon,
+  .feat-grid .feat-card:nth-child(2).on .feat-icon,
+  .feat-grid .feat-card:nth-child(3).on .feat-icon,
+  .feat-grid .feat-card:nth-child(4).on .feat-icon,
+  .feat-grid .feat-card:nth-child(5).on .feat-icon,
+  .feat-grid .feat-card:nth-child(6).on .feat-icon,
+  .feat-grid .feat-card:nth-child(1).on h3,
+  .feat-grid .feat-card:nth-child(2).on h3,
+  .feat-grid .feat-card:nth-child(3).on h3,
+  .feat-grid .feat-card:nth-child(4).on h3,
+  .feat-grid .feat-card:nth-child(5).on h3,
+  .feat-grid .feat-card:nth-child(6).on h3 {
+    animation-delay: 0.05s !important;
+    transition-delay: 0.05s !important;
+  }
+
+  /* Disable heavy icon slam and text rippling keyframes on mobile */
+  .feat-card.on .feat-icon,
+  .feat-card.on h3 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Disable hover tilt and 3D transforms on mobile cards */
+  .feat-card:hover,
+  .blog-card:hover,
+  .glass-card:hover,
+  .form-card {
+    transform: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+  }
+
+  .feat-card:hover .feat-icon {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .step-circ {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  @keyframes simpleMobileFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

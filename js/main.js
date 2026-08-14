@@ -539,6 +539,7 @@
     }
 
     card.addEventListener("mousemove", (e) => {
+      if (isMobile || window.innerWidth <= 768) return;
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
@@ -550,6 +551,7 @@
   /* ── 14. MAGNETIC BUTTONS ────────────────── */
   document.querySelectorAll(".btn-p,.btn-s,.nav-cta").forEach((btn) => {
     btn.addEventListener("mousemove", (e) => {
+      if (isMobile || window.innerWidth <= 768) return;
       const r = btn.getBoundingClientRect();
       const x = (e.clientX - r.left - r.width / 2) * 0.25;
       const y = (e.clientY - r.top - r.height / 2) * 0.25;

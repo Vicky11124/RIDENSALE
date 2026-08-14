@@ -7,7 +7,7 @@
   <!-- Home -->
   <url>
     <loc>https://www.ridensale.in/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -15,7 +15,7 @@
   <!-- Sell (highest-priority conversion page) -->
   <url>
     <loc>https://www.ridensale.in/sell</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -23,7 +23,7 @@
   <!-- Services -->
   <url>
     <loc>https://www.ridensale.in/services</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -39,7 +39,7 @@
   <!-- FAQ -->
   <url>
     <loc>https://www.ridensale.in/faq</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -87,9 +87,65 @@
   <!-- Blog Post 5: Bike Valuation Tips -->
   <url>
     <loc>https://www.ridensale.in/blog-valuation-tips</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Post 6: Documents Required to Sell a Used Bike -->
+  <url>
+    <loc>https://www.ridensale.in/blog-documents-required</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Post 7: How to Sell an Old Bike in Chennai -->
+  <url>
+    <loc>https://www.ridensale.in/blog-sell-old-bike-chennai</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Post 8: Can You Sell a Financed Bike? -->
+  <url>
+    <loc>https://www.ridensale.in/blog-sell-financed-bike</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Landing Page 1: Bike Valuation -->
+  <url>
+    <loc>https://www.ridensale.in/bike-valuation.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Landing Page 2: Sell Bike Online -->
+  <url>
+    <loc>https://www.ridensale.in/sell-bike-online.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Landing Page 3: Used Bike Buyers -->
+  <url>
+    <loc>https://www.ridensale.in/used-bike-buyers.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Landing Page 4: Sell Old Bike -->
+  <url>
+    <loc>https://www.ridensale.in/sell-old-bike.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
 </urlset>

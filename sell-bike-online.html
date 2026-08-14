@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) - Optimized Lazy Load -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-RN2GS6W92C';
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-RN2GS6W92C');
+      }, 3000);
+    });
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Sell Your Bike Online in Chennai | Quick &amp; Convenient — RideNSale</title>
+  <meta name="description"
+    content="Start your bike sale online with RideNSale in Chennai. Get a valuation, doorstep inspection, clear offer, and secure payment." />
+  <meta name="keywords"
+    content="sell bike online, sell my bike online, online bike selling Chennai, sell used bike online, bike resale online" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.ridensale.in/sell-bike-online.html" />
+  <meta property="og:title" content="Sell Your Bike Online in Chennai | Quick &amp; Convenient — RideNSale" />
+  <meta property="og:description"
+    content="Start your bike sale online with RideNSale in Chennai. Get a valuation, doorstep inspection, clear offer, and secure payment." />
+  <meta property="og:image" content="https://www.ridensale.in/assets/images/car-7.webp" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@ridensale" />
+  <meta name="twitter:title" content="Sell Your Bike Online in Chennai | Quick &amp; Convenient — RideNSale" />
+  <meta name="twitter:description" content="Start your bike sale online with RideNSale in Chennai. Get a valuation, doorstep inspection, clear offer, and secure payment." />
+  <meta name="twitter:image" content="https://www.ridensale.in/assets/images/car-7.webp" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.ridensale.in/sell-bike-online.html" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/favicon/site.webmanifest" />
+
+  <!-- Google Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;900&amp;family=Rajdhani:wght@400;600;700&amp;family=Share+Tech+Mono&amp;display=swap" media="print" onload="this.media='all'" />
+  <link rel="preload" href="css/style.min.css?v=4" as="style" />
+  <link rel="stylesheet" href="css/style.min.css?v=4" />
+
+  <!-- JSON-LD LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://www.ridensale.in/#localbusiness",
+    "name": "RideNSale",
+    "url": "https://www.ridensale.in",
+    "telephone": "+918807182287",
+    "email": "sales@ridensale.in",
+    "image": "https://www.ridensale.in/assets/logo/logo.webp",
+    "logo": "https://www.ridensale.in/assets/logo/logo.webp",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No 38, potters street, Saidapet",
+      "addressLocality": "Chennai",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "600015",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "13.0214",
+      "longitude": "80.2214"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.ridensale.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://www.ridensale.in/services.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Sell Bike Online",
+        "item": "https://www.ridensale.in/sell-bike-online.html"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <div id="scroll-progress"></div>
+  <div id="cur-dot"></div>
+  <div class="carbon-overlay"></div>
+  <canvas id="ptx"></canvas>
+  <div id="navOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;backdrop-filter:blur(4px)"></div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="ld-logo-wrap">
+      <img src="assets/logo/logo.webp" alt="Ride N Sale Logo" class="ld-logo-img" width="120" height="40"
+        fetchpriority="high" />
+    </div>
+    <div class="ld-tag">Starting Engine...</div>
+    <div class="ld-rpm-wrap">
+      <div class="ld-tach" aria-hidden="true">
+        <svg viewBox="0 0 260 160" class="ld-tach-svg" focusable="false">
+          <path class="ld-tach-bg" d="M 42 118 A 88 88 0 0 1 218 118" />
+          <path class="ld-tach-red" d="M 174 52 A 88 88 0 0 1 218 118" />
+          <g class="ld-tick" transform="rotate(-90 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">0</text>
+          </g>
+          <g class="ld-tick" transform="rotate(-60 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">2</text>
+          </g>
+          <g class="ld-tick" transform="rotate(-30 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">4</text>
+          </g>
+          <g class="ld-tick" transform="rotate(0 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">6</text>
+          </g>
+          <g class="ld-tick" transform="rotate(30 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label" x="130" y="28"
+              text-anchor="middle">8</text>
+          </g>
+          <g class="ld-tick ld-tick-red" transform="rotate(60 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label ld-tick-red" x="130" y="28"
+              text-anchor="middle">10</text>
+          </g>
+          <g class="ld-tick ld-tick-red" transform="rotate(90 130 118)">
+            <line x1="130" y1="34" x2="130" y2="44" /><text class="ld-tick-label ld-tick-red" x="130" y="28"
+              text-anchor="middle">12</text>
+          </g>
+          <text class="ld-tach-unit" x="130" y="152" text-anchor="middle">x1000 RPM</text>
+          <g id="rpmNeedle" class="ld-needle">
+            <line x1="130" y1="118" x2="130" y2="42" />
+            <circle cx="130" cy="118" r="7" />
+          </g>
+        </svg>
+      </div>
+      <div class="ld-val"><span id="rpmVal">0</span> <span>RPM</span></div>
+    </div>
+    <div class="ld-bars">
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+      <div class="ld-bar"></div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="nav">
+    <a href="/" class="nav-logo"><img src="assets/logo/logo.webp" alt="Ride N Sale" width="120" height="40" fetchpriority="high" /></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Process</a></li>
+      <li><a href="/#contact">Contact</a></li>
+      <li><a href="sell.html">Sell</a></li>
+      <li><a href="faq.html">FAQ's</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="sell.html" class="nav-cta">GET FREE VALUATION</a></li>
+    </ul>
+    <button class="hamburger" id="ham" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <nav class="mob-nav" id="mobNav">
+    <a href="/">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Process</a>
+    <a href="/#contact">Contact</a>
+    <a href="sell.html">Sell</a>
+    <a href="faq.html">FAQ's</a>
+    <a href="blog.html">Blog</a>
+    <a href="sell.html" class="nav-cta btn-p">GET FREE VALUATION</a>
+  </nav>
+
+  <!-- PAGE HERO HEADER (HOMEPAGE DESIGN SYSTEM) -->
+  <header class="page-hero">
+    <div class="con fadeUp">
+      <div class="eyebrow" style="justify-content:center">ONLINE BIKE SELLING CHENNAI</div>
+      <h1 class="page-hero-title">SELL YOUR BIKE <span class="hl">ONLINE</span></h1>
+      <p class="page-hero-sub">Sell your bike online without dealer-hopping. Get a valuation, arrange a convenient doorstep inspection, review your offer and complete the sale securely with RideNSale.</p>
+      <div class="redline c" style="margin-top:1.2rem"></div>
+      <div style="margin-top:2rem;">
+        <a href="sell.html" class="btn-p" style="padding:1.1rem 2.2rem; font-size:1rem;">START SELLING MY BIKE</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main>
+    <!-- SECTION 1: CONCISE 5-STEP ONLINE PROCESS -->
+    <section class="sp">
+      <div class="con">
+        <div class="tc">
+          <div class="eyebrow" style="justify-content:center">5 SIMPLE STEPS</div>
+          <h2 class="sec-title">HOW TO SELL YOUR <span class="hl">BIKE ONLINE</span></h2>
+          <div class="redline c"></div>
+        </div>
+
+        <div class="steps" style="margin-top:3.5rem;">
+          <div class="step">
+            <div class="step-circ">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              </svg>
+            </div>
+            <div class="step-lbl">STEP 1</div>
+            <h3 class="step-title">Submit Details</h3>
+            <p class="step-desc">Enter your bike's brand, model, year, and kilometres online in 2 minutes.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-circ">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <div class="step-lbl">STEP 2</div>
+            <h3 class="step-title">Get Valuation</h3>
+            <p class="step-desc">Receive an initial market-based price estimate based on vehicle data.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-circ">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              </svg>
+            </div>
+            <div class="step-lbl">STEP 3</div>
+            <h3 class="step-title">Doorstep Inspection</h3>
+            <p class="step-desc">Our evaluator visits your preferred location anywhere in Chennai for a physical check.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-circ">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="step-lbl">STEP 4</div>
+            <h3 class="step-title">Review Offer</h3>
+            <p class="step-desc">Accept your final verified offer with zero obligation or pressure.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-circ">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div class="step-lbl">STEP 5</div>
+            <h3 class="step-title">Secure Payment</h3>
+            <p class="step-desc">Receive payment directly into your bank account before vehicle handover.</p>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:2.5rem; font-size:0.95rem; color:var(--text2);">
+          Want to know your bike's resale value first? <a href="bike-valuation.html" style="color:var(--accent); text-decoration:underline; font-weight:600;">→ Check Your Bike's Resale Value</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: WHY SELL YOUR BIKE ONLINE? -->
+    <section class="sp" style="background:#0a0a0a;">
+      <div class="con">
+        <div class="tc">
+          <div class="eyebrow" style="justify-content:center">ADVANTAGES</div>
+          <h2 class="sec-title">WHY SELL YOUR BIKE <span class="hl">ONLINE WITH RIDENSALE?</span></h2>
+          <div class="redline c"></div>
+        </div>
+
+        <div class="feat-grid" style="margin-top:3.5rem;">
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h3>Convenient &amp; Fast</h3>
+            <p>No need to visit multiple dealers or negotiate with unknown classified buyers online.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h3>Free Doorstep Inspection</h3>
+            <p>We come to your home or workplace in Chennai at your preferred time slot.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              </svg>
+            </div>
+            <h3>Free RC Transfer Support</h3>
+            <p>We assist with complete RTO ownership transfer paperwork to protect seller liability.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 8v4l3 3"></path>
+              </svg>
+            </div>
+            <h3>Transparent Valuation</h3>
+            <p>Your offer is based on your bike's model, condition, mileage and current market demand.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3>No Dealer-Hopping</h3>
+            <p>Start the process online and avoid visiting multiple dealers to find a buyer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DOCUMENT CHECKLIST LINKS -->
+    <section class="sp">
+      <div class="con">
+        <div class="about-mission" style="max-width:850px; text-align:left;">
+          <div class="eyebrow" style="justify-content:flex-start;">PAPERWORK CHECKLIST</div>
+          <h2 class="sec-title" style="font-size:1.8rem; text-align:left;">REQUIRED DOCUMENTS TO <span class="hl">SELL ONLINE</span></h2>
+          <div class="redline" style="margin-bottom:1.5rem;"></div>
+          <ul class="about-checklist" style="margin-bottom:1.5rem;">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Original Registration Certificate (RC Smartcard)</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Government ID &amp; Address Proof (Aadhaar / PAN Card)</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Active Vehicle Insurance Policy &amp; Valid PUC Certificate</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Bank Account Details (For Direct Bank Transfer)</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Bank NOC &amp; Form 35 (Required if bike is financed)</li>
+          </ul>
+          <p style="font-size:0.95rem; color:var(--text2);">
+            Need more details? Read our complete <a href="blog-documents-required.html" style="color:var(--accent); text-decoration:underline; font-weight:600;">Document Checklist Guide →</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: WHAT TYPES OF BIKES CAN YOU SELL ONLINE? -->
+    <section class="sp" style="background:#0a0a0a;">
+      <div class="con">
+        <div class="tc">
+          <div class="eyebrow" style="justify-content:center">VEHICLE CATEGORIES</div>
+          <h2 class="sec-title">WHAT TYPES OF BIKES <span class="hl">CAN YOU SELL ONLINE?</span></h2>
+          <p class="sec-sub" style="margin: 0 auto 2.5rem; max-width:750px;">
+            RideNSale evaluates a wide range of motorcycles and scooters. The final offer depends on your bike's model, age, condition, mileage, and current Chennai market demand.
+          </p>
+          <div class="redline c"></div>
+        </div>
+
+        <div class="feat-grid" style="margin-top:3.5rem;">
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <h3>Commuter Motorcycles</h3>
+            <p>Popular 100cc–150cc daily commuters like Hero Splendor, Honda Shine, TVS Passion, and Pulsar 150.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 12h10"/>
+              </svg>
+            </div>
+            <h3>Automatic Scooters</h3>
+            <p>Gearless scooters including Honda Activa, TVS Jupiter, Suzuki Access, Ntorq, and Vespa models.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <h3>Sports &amp; Performance Bikes</h3>
+            <p>Yamaha R15, KTM Duke/RC, TVS Apache RR310, Pulsar NS200, and Honda CBR series.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h3>Cruiser Motorcycles</h3>
+            <p>Royal Enfield Classic, Bullet, Meteor, Hunter, Jawa, Yezdi, and Avenger models.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <h3>Premium &amp; Superbikes</h3>
+            <p>BMW Motorrad, Kawasaki Ninja, Triumph, Ducati, and Harley-Davidson motorcycles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: FREQUENTLY ASKED QUESTIONS (SITE ACCORDION) -->
+    <section class="sp">
+      <div class="con">
+        <div class="tc">
+          <div class="eyebrow" style="justify-content:center">ONLINE SELLING FAQ'S</div>
+          <h2 class="sec-title">ONLINE SELLING <span class="hl">FREQUENTLY ASKED QUESTIONS</span></h2>
+          <div class="redline c"></div>
+        </div>
+
+        <div class="faq-cols" style="column-count:1; max-width:850px; margin: 3rem auto 0;">
+          <div class="faq-item">
+            <button class="faq-q">
+              <span>Can I sell my bike online?</span>
+              <span class="faq-ico">+</span>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-in">Yes! You can submit your bike details online, receive an initial valuation estimate, book a doorstep inspection, and complete the sale safely without leaving home.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              <span>How does the online bike selling process work?</span>
+              <span class="faq-ico">+</span>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-in">The process has 5 simple steps: Submit bike details online, receive a valuation, schedule a free doorstep inspection, review your final verified offer, and receive direct bank payment.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              <span>How is my bike's value determined?</span>
+              <span class="faq-ico">+</span>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-in">Valuation is calculated based on real-time market demand in Chennai for your bike's brand, model, and year, along with mileage, physical condition, and RC documentation.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              <span>Do you provide doorstep inspection?</span>
+              <span class="faq-ico">+</span>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-in">Yes, RideNSale provides 100% free doorstep evaluation across major residential and commercial areas in Chennai at your preferred time slot.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              <span>How do I receive payment after selling my bike?</span>
+              <span class="faq-ico">+</span>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-in">Payment is transferred directly into your bank account before vehicle pickup.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              <span>What documents do I need to sell my bike?</span>
+              <span class="faq-ico">+</span>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-in">You will need your original RC, valid insurance policy/PUC, government ID proof (Aadhaar/PAN), and bank details. Read our complete <a href="blog-documents-required.html" style="color:var(--accent); text-decoration:underline;">Document Checklist Guide</a> for more details.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              <span>Can I sell a financed bike online?</span>
+              <span class="faq-ico">+</span>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-in">Yes, you can sell a bike with an active loan after securing a bank NOC and Form 35. Check our <a href="blog-sell-financed-bike.html" style="color:var(--accent); text-decoration:underline;">Financed Bike Guide</a> for step-by-step guidance.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              <span>Do you help with RC transfer?</span>
+              <span class="faq-ico">+</span>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-in">Yes, RideNSale assists sellers with required Form 29/30 RTO documentation and ownership transfer support.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: ECOSYSTEM INTERNAL CROSS-LINK CTAS -->
+    <section class="sp" style="background:#0a0a0a;">
+      <div class="con">
+        <div class="tc">
+          <div class="eyebrow" style="justify-content:center">EXPLORE MORE OPTIONS</div>
+          <h2 class="sec-title">LOOKING FOR OTHER <span class="hl">BIKE SELLING SERVICES?</span></h2>
+          <div class="redline c"></div>
+        </div>
+
+        <div class="feat-grid" style="margin-top:3.5rem;">
+          <div class="feat-card" style="text-align:center;">
+            <div class="eyebrow" style="justify-content:center; margin-bottom:0.5rem;">INSTANT ESTIMATE</div>
+            <h3 style="margin-bottom:0.6rem;">Check Bike Resale Value</h3>
+            <p style="margin-bottom:1.2rem;">Calculate an instant valuation estimate based on your bike's model, year, and condition in Chennai.</p>
+            <a href="bike-valuation.html" class="btn-p" style="display:inline-flex; width:100%; justify-content:center;">→ Bike Valuation Calculator</a>
+          </div>
+
+          <div class="feat-card" style="text-align:center;">
+            <div class="eyebrow" style="justify-content:center; margin-bottom:0.5rem;">DIRECT BUYERS</div>
+            <h3 style="margin-bottom:0.6rem;">Used Bike Buyers in Chennai</h3>
+            <p style="margin-bottom:1.2rem;">Learn how RideNSale buys pre-owned bikes directly with fair market offers and verified payment.</p>
+            <a href="used-bike-buyers.html" class="btn-p" style="display:inline-flex; width:100%; justify-content:center;">→ Used Bike Buyers</a>
+          </div>
+
+          <div class="feat-card" style="text-align:center;">
+            <div class="eyebrow" style="justify-content:center; margin-bottom:0.5rem;">OLDER VEHICLES</div>
+            <h3 style="margin-bottom:0.6rem;">Sell Your Old Bike</h3>
+            <p style="margin-bottom:1.2rem;">Get a fair market valuation for older motorcycles and scooters, even with expired insurance or FC.</p>
+            <a href="sell-old-bike.html" class="btn-p" style="display:inline-flex; width:100%; justify-content:center;">→ Sell Old Bike Guide</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><span>RIDE</span><span class="n-letter">N</span><span>SALE</span></div>
+        <div class="foot-tagline">RIDENSALE – Chennai's Trusted Used Bike Buyers</div>
+        <p class="foot-desc">We buy all types of used bikes at market value. Free inspection and complete RC transfer support.</p>
+      </div>
+      <div>
+        <div class="foot-ttl">Quick Links</div>
+        <ul class="foot-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Process</a></li>
+          <li><a href="sell.html">Sell Your Bike</a></li>
+          <li><a href="bike-valuation.html">Bike Valuation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-ttl">Help &amp; Guides</div>
+        <ul class="foot-links">
+          <li><a href="faq.html">FAQ's</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="sell-bike-online.html">Sell Bike Online</a></li>
+          <li><a href="used-bike-buyers.html">Used Bike Buyers</a></li>
+          <li><a href="sell-old-bike.html">Sell Old Bike</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-ttl">Contact Us</div>
+        <div class="ci">No 38, potters street, Saidapet, Chennai – 600015</div>
+        <div class="ci">+91 8807182287</div>
+        <div class="ci">sales@ridensale.in</div>
+      </div>
+    </div>
+    <div class="foot-btm">
+      <div class="foot-copy">© 2025 RIDENSALE. All Rights Reserved.</div>
+      <div class="foot-btm-links">
+        <a href="sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15" /></svg>
+  </button>
+  <a href="https://wa.me/918807182287" class="wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  </a>
+
+  <script src="js/main.min.js" defer></script>
+</body>
+
+</html>
