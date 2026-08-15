@@ -4480,6 +4480,7 @@ section {
   .slideLeftPop.on,
   .step.on,
   .fadeUp.on {
+    opacity: 1 !important;
     animation: simpleMobileFadeIn 0.35s ease-out both !important;
   }
 
@@ -4520,14 +4521,18 @@ section {
     box-shadow: none !important;
   }
 
-  /* Disable hover tilt and 3D transforms on mobile cards */
+  /* Disable hover tilt and 3D transforms on mobile cards, preserving visibility */
   .feat-card:hover,
+  .feat-card:focus,
+  .feat-card:active,
+  .feat-card:focus-within,
   .blog-card:hover,
   .glass-card:hover,
   .form-card {
     transform: none !important;
     box-shadow: none !important;
     animation: none !important;
+    opacity: 1 !important;
   }
 
   .feat-card:hover .feat-icon {
